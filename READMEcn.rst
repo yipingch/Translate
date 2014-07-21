@@ -126,20 +126,30 @@ panns假设资料集是一个基于排的矩阵(e.g. m x n)，每一排代表多
 	p.parallelize(True)
 	p.build()
 
-Theory In a Nutshell
---------------------
+原理简述
+-------
+
+简单来说，我们通过 `random projection`_ 来获取k-NN的近似值。索引的创建可以通过生成一个人二叉树来实现。树中的每个节点代表一定数值点，进而通过比较平均值被分成两组(左子树和右子树)。准确率可以通过下面的方法来提高：
+
+.. _random projection: http://en.wikipedia.org/wiki/Locality-sensitive_hashing#Random_projection
 
 Simply put, approximate k-NN in panns is achieved by `random projection`_. The index is built by constructing a binary tree. Each node of the tree represents a scalar-projection of certain data points, which are further divided into two groups (left- and right-child) by comparing to their average. The accuracy can be improved from the following perspective:
 
 .. _random projection: http://en.wikipedia.org/wiki/Locality-sensitive_hashing#Random_projection
+
+- 合理的放置偏离值(e.g. 在示例的平均值)
+- 选择合理的投影向量(随机值或者生成分)
+- 使用更多的投影(但是需要更多的生成时间和更大的索引)
+- 使用更多的二叉树(也要更多的生成时间和更大的索引)
 
 - Place the offset wisely (e.g. at the sample average).
 - Choose the projection vector wisely (e.g. random or principle components).
 - Use more projections (but longer building time and larger index).
 - Use more binary trees (also longer building time and larger index).
 
+实现近似k-NN值高准确率是以大索引为代价的。panns希望在这两个冲突的值中寻求一个平衡点。与其他的库为每个节点生成一个全新的随机向量不同，panns重复使用不同树中的投影向量。这种办法极大降低索引的大小当维数很高或者数很多的时候。与此同时，重复使用投影向量不会降低准确性(请看评估部分)
+
 The accuracy of approximate k-NN is usually achieved at the price of large index. panns aims to find the good trade-off of these two conflicting factors. Different from other libraries, panns reuses the projection vectors among different trees instead of generating a new random vector for each node. This can significantly reduces the index size when the dimension is high and trees are many. At the same time, reusing the projection vectors will not degrade the accuracy (see Evaluation section below).
-Evaluationnns和Annoy.
 
 评估
 ----
@@ -153,6 +163,8 @@ Evaluationnns和Annoy.
 +------------+-------------------+-------------------+----------------+----------------+
 | Index Size |     5.4 MB        |     20 MB         |    5.4 MB      |     11 MB      |
 +------------+-------------------+-------------------+----------------+----------------+
+
+比较Annoy, panns可以达到更高的准确率采用更小的索引文件。原因已经在原理部分简单描述。一般来说，高准确率是通过放置偏离值在示例的平均值，与此同时，实现更小的索引是通过重复使用投影向量。
 
 Compared with Annoy, panns can achieve higher accuracy with much smaller index file. The reason was actually already briefly discussed in "Theory" section. Generally speaking, the higher accuracy is achieved by placing the offset at sample average; while the smaller index is achieved by reusing the projection vectors.
 
