@@ -148,25 +148,25 @@ Evaluation in this section is simply done by comparing against Annoy. Annoy is a
 +------------+-------------------+-------------------+----------------+----------------+
 |	     | panns (Euclidean) | Annoy (Euclidean) | panns (cosine) | Annoy (cosine) |
 +------------+-------------------+-------------------+----------------+----------------+
-|  Accuracy  | 	   69.2%         |     48.8%         |    70.1%       |     50.4%      |
+|  准确率    | 	   69.2%         |     48.8%         |    70.1%       |     50.4%      |
 +------------+-------------------+-------------------+----------------+----------------+
-| Index Size |     5.4 MB        |     20 MB         |    5.4 MB      |     11 MB      |
+| 索引大小   |     5.4 MB        |     20 MB         |    5.4 MB      |     11 MB      |
 +------------+-------------------+-------------------+----------------+----------------+
 
 Compared with Annoy, panns can achieve higher accuracy with much smaller index file. The reason was actually already briefly discussed in "Theory" section. Generally speaking, the higher accuracy is achieved by placing the offset at sample average; while the smaller index is achieved by reusing the projection vectors.
 
-One thing worth pointing out is the evaluation here is far from thorough and comprehensive, other evaluations are highly welcome and we are always ready to link.
+值得注意的是这里的评估远远不够，我们还需要其他方面的评估。
 
-Discussion
-----------
+讨论
+----
 
-Any suggestions, questions and related discussions are warmly welcome. You can post and find relevant information in `panns-group`_ .
+任何建议，问题和相关的讨论非常欢迎，你可以提出意见和找到相关的信息在 `panns-group`_ 。
 
 .. _panns-group: https://groups.google.com/forum/#!forum/panns
 
-Future Work
------------
+未来工作
+--------
 
-- Implement mmap on index file to speed up index loading.
-- Improve query performance by parallelism.
-- Perform more thorough evaluations.
+- 在索引文件上实现mmap去提高索引加载速度
+- 用并行性去提高请求性能
+- 从更广泛的角度去评估
