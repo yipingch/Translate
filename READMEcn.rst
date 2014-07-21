@@ -19,7 +19,7 @@ panns是Python Approximate Nearest Neighbor Search的缩写。panns是一种优�
 	p2 = PannsIndex(metric='euclidean')  # index using Euclidean distance metric
 	...
 
-从技术层面来说，panns只是我们开发项目中一个很小的模块。我们把它作为独立包放出是因为我们意识到很难找到一种简单的工具在高维空间中进行高准确率的K-NN搜索。高维在这里指的是数据集具有成千上万不同的特性，这已经超出 `k-d tree`_ 的处理范围。
+从技术层面来说，panns只是我们开发项目中一个很小的模块。我们把它作为独立包放出是因为我们意识到很难找到一种简单的工具在高维空间中进行高准确率的K-NN搜索。高维在这里指的是数据集具有 **成千上万不同的特性** ，这已经超出 `k-d tree`_ 的处理范围。
 
 .. _k-d tree: http://en.wikipedia.org/wiki/K-d_tree
 
