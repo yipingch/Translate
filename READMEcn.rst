@@ -23,7 +23,7 @@ panns是Python Approximate Nearest Neighbor Search的缩写。panns是一种优�
 
 .. _k-d tree: http://en.wikipedia.org/wiki/K-d_tree
 
-panns是由 `Liang Wang`_ @ Helsinki University开发。若您有如何问题，请发邮件至``liang.wang[at]helsinki.fi``或者在 `panns-group`_ 提出意见。
+panns是由 `Liang Wang`_ @ Helsinki University开发。若您有如何问题，请发邮件至 ``liang.wang[at]helsinki.fi`` 或者在 `panns-group`_ 提出意见。
 
 .. _Liang Wang: http://cs.helsinki.fi/liang.wang
 .. _panns-group: https://groups.google.com/forum/#!forum/panns
